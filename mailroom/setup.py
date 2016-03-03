@@ -2,6 +2,7 @@
 
 from setuptools import setup
 
+
 setup(
     name="mailroom",
     description="Allows user to interact with donor information for charity.",
