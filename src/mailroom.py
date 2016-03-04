@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
+from math import trunc
 
 # try:
 #     input = raw_input
@@ -64,13 +65,10 @@ def thank_you():
 
 def create_report():
     print("create report selected")
-    # report_list = []
-    # for key, value in donors:
-    #     report_list.append(key, value)
-    # print(report_list)
-    for key, value in donors:
-        ave = sum(value / len(value))
-        print(key, value, sum(value), len(value), ave(lambda value: sum(value) / len(value)))
+    for key, value in donors.items():
+        ave = sum(value) / len(value)
+        print("""Name: {},\n Donations: {},\n Total Donations:{},\n Number of Donations: {},\n Average Donations: {}\n
+        """.format(key, value, sum(value), len(value), trunc(ave)))
 
 
 def get_input(prompt, options):
