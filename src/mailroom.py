@@ -33,7 +33,7 @@ def write_email(name, donor_hist):
 def get_donation(donor_hist, hardcode_input=""):
     amt = hardcode_input
     if not amt:
-        amt = raw_input(PROMPTS["donation"])
+        amt = input(PROMPTS["donation"])
     amt = int(amt)
     donor_hist.append(amt)
     return donor_hist
@@ -46,7 +46,7 @@ def list_donors():
 
 
 def thank_you():
-    name = raw_input(PROMPTS["letter"]).lower()
+    name = str(input(PROMPTS["letter"])).lower()
     if name == "list" or name in global_menu:
         donors[name]()
     else:
@@ -62,7 +62,7 @@ def create_report():
 
 
 def get_input(prompt, options):
-    user_answer = raw_input(prompt)
+    user_answer = str(input(prompt)).lower()
     if user_answer == "quit":
         end_program()
     if user_answer not in options:
@@ -73,7 +73,7 @@ def get_input(prompt, options):
 def main_prompt(hardcode_input=""):
     choice = hardcode_input
     if not choice:
-        choice = get_input(PROMPTS["main"], main_menu).lower()
+        choice = get_input(PROMPTS["main"], main_menu)
     main_menu[choice]()
     return choice
 
