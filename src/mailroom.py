@@ -20,6 +20,7 @@ def list_options():
 def end_program():
     print("you can't quit now!")
 
+
 main_menu = {
     "thank you": thank_you,
     "report": create_report,
