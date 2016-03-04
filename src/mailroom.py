@@ -69,6 +69,7 @@ def create_report():
         ave = sum(value) / len(value)
         print("""Name: {},\n Donations: {},\n Total Donations:{},\n Number of Donations: {},\n Average Donations: {}\n
         """.format(key, value, sum(value), len(value), trunc(ave)))
+    main_prompt()
 
 
 def get_input(prompt, options):
