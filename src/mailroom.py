@@ -27,7 +27,7 @@ def write_email(name, donor_hist):
         {}.\n
         Have a great day!\n
         Selena and Rick
-        """).format(name, donor_hist[-1], don_amt)
+        """.format(name, donor_hist[-1], don_amt))
 
 
 def get_donation(donor_hist, hardcode_input=""):
