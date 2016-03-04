@@ -41,7 +41,7 @@ def get_donation(donor_hist, hardcode_input=""):
 
 def list_donors():
     for name in donors:
-        print name
+        print(name)
     thank_you()
 
 
@@ -63,8 +63,8 @@ def create_report():
 
 def get_input(prompt, options):
     user_answer = raw_input(prompt)
-    if user_answer in global_menu:
-        global_menu[user_answer]()
+    if user_answer == "quit":
+        end_program()
     if user_answer not in options:
         get_input(prompt, options)
     return user_answer
