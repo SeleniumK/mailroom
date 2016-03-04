@@ -4,7 +4,7 @@ from math import trunc
 
 # try:
 #     input = raw_input
-# except NameEror:
+# except NameError:
 #     pass
 
 
@@ -37,7 +37,7 @@ def write_email(name, donor_hist):
 def get_donation(donor_hist, hardcode_input=""):
     amt = hardcode_input
     if not amt:
-        amt = input(PROMPTS["donation"])
+        amt = raw_input(PROMPTS["donation"])
     amt = int(amt)
     donor_hist.append(amt)
     return donor_hist
@@ -50,7 +50,7 @@ def list_donors():
 
 
 def thank_you():
-    name = input(PROMPTS["letter"]).lower()
+    name = raw_input(PROMPTS["letter"]).lower()
     if name == "list":
         list_donors()
     elif name in global_menu:
@@ -63,17 +63,24 @@ def thank_you():
         main_prompt()
 
 
+def sort_donors():
+    sorted_donors = sorted(donors, key=lambda donor: sum(donors[donor]), reverse=True)
+    return sorted_donors
+
+
 def create_report():
     print("create report selected")
-    for key, value in donors.items():
+    # print(sort_donors())
+    for donor in sort_donors():
+        value = donors[donor]
         ave = sum(value) / len(value)
         print("""Name: {},\n Donations: {},\n Total Donations:{},\n Number of Donations: {},\n Average Donations: {}\n
-        """.format(key, value, sum(value), len(value), trunc(ave)))
+        """.format(donor, value, sum(value), len(value), trunc(ave)))
     main_prompt()
 
 
 def get_input(prompt, options):
-    user_answer = input(prompt).lower()
+    user_answer = raw_input(prompt).lower()
     if user_answer == "quit":
         end_program()
     elif user_answer not in options:
