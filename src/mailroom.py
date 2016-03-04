@@ -14,7 +14,7 @@ def create_report():
 
 def list_options():
     for key in main_menu:
-        print key
+        print(key)
 
 
 def end_program():
@@ -36,7 +36,11 @@ def get_input(prompt, menu_options):
     return user_answer
 
 
-def welcome_prompt():
+def welcome_prompt(hardcode_input=""):
     print('welcome message')
-    choice = get_input(prompts["welcome"], main_menu)
+    if not hardcode_input:
+        choice = get_input(prompts["welcome"], main_menu)
+    else:
+        choice = hardcode_input
     main_menu[choice]()
+    return choice
