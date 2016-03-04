@@ -9,7 +9,7 @@ setup(
     author_email="tesmonrd@gmail.com",
     license="MIT",
     py_modules=["mailroom"],
-    package_dir={"": "src"},
+    package_dir={"": "mailroom"},
     install_requires=[],
     extras_require={'test': ['pytest', 'pytest-xdist', 'tox']},
 )
