@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 import sys
 
+# try:
+#     input = raw_input
+# except NameEror:
+#     pass
+
 
 def list_options():
     for key in main_menu:
-        if key == "list":
-            continue
         print(key)
     for glob in global_menu:
         print(glob)
@@ -24,7 +27,7 @@ def write_email(name, donor_hist):
         don_amt = "We appreciate your first donation!"
     print("""Hello {},\n
         Thank your for your most recent donation of ${}.
-        {}.\n
+        {}\n
         Have a great day!\n
         Selena and Rick
         """.format(name, donor_hist[-1], don_amt))
@@ -46,9 +49,11 @@ def list_donors():
 
 
 def thank_you():
-    name = str(input(PROMPTS["letter"])).lower()
-    if name == "list" or name in global_menu:
-        donors[name]()
+    name = input(PROMPTS["letter"]).lower()
+    if name == "list":
+        list_donors()
+    elif name in global_menu:
+        global_menu[name]()
     else:
         if name not in donors:
             donors.setdefault(name, [])
@@ -59,14 +64,21 @@ def thank_you():
 
 def create_report():
     print("create report selected")
+    # report_list = []
+    # for key, value in donors:
+    #     report_list.append(key, value)
+    # print(report_list)
+    for key, value in donors:
+        ave = sum(value / len(value))
+        print(key, value, sum(value), len(value), ave(lambda value: sum(value) / len(value)))
 
 
 def get_input(prompt, options):
-    user_answer = str(input(prompt)).lower()
+    user_answer = input(prompt).lower()
     if user_answer == "quit":
         end_program()
-    if user_answer not in options:
-        get_input(prompt, options)
+    elif user_answer not in options:
+        user_answer = get_input(prompt, options)
     return user_answer
 
 
@@ -84,9 +96,6 @@ def start_program():
 
 
 donors = {
-    "list": list_donors,
-    "back": main_prompt,
-    "quit": end_program,
     "selena": [25, 10, 15],
     "patricia": [100, 200, 300],
     "disa": [15, 15, 15],
@@ -95,17 +104,21 @@ donors = {
 
 
 PROMPTS = {
-    "main": "Thank you letter or Report? \n Enter 'list' to see all options: \n",
+    "main": "Letter or Report? \n Enter 'options' to see all options: \n",
     "letter": "Enter Name of Donor, Enter 'list' to see all, or enter 'back' to go to main menu: \n",
     "donation": "How much did they donate? Please enter a whole dollar amount: \n",
 }
 
-global_menu = ["back", "quit"]
+global_menu = {
+    "back": main_prompt,
+    "quit": end_program,
+}
+
 
 main_menu = {
     "letter": thank_you,
     "report": create_report,
-    "list": list_options,
+    "options": list_options,
     "quit": end_program,
 }
 
