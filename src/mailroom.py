@@ -2,10 +2,10 @@
 import sys
 from math import trunc
 
-# try:
-#     input = raw_input
-# except NameError:
-#     pass
+try:
+    input = raw_input
+except NameError:
+    pass
 
 
 def list_options():
@@ -37,7 +37,7 @@ def write_email(name, donor_hist):
 def get_donation(donor_hist, hardcode_input=""):
     amt = hardcode_input
     if not amt:
-        amt = raw_input(PROMPTS["donation"])
+        amt = input(PROMPTS["donation"])
     amt = int(amt)
     donor_hist.append(amt)
     return donor_hist
@@ -50,7 +50,7 @@ def list_donors():
 
 
 def thank_you():
-    name = raw_input(PROMPTS["letter"]).lower()
+    name = input(PROMPTS["letter"]).lower()
     if name == "list":
         list_donors()
     elif name in global_menu:
@@ -70,7 +70,6 @@ def sort_donors():
 
 def create_report():
     print("create report selected")
-    # print(sort_donors())
     for donor in sort_donors():
         value = donors[donor]
         ave = sum(value) / len(value)
@@ -80,7 +79,7 @@ def create_report():
 
 
 def get_input(prompt, options):
-    user_answer = raw_input(prompt).lower()
+    user_answer = input(prompt).lower()
     if user_answer == "quit":
         end_program()
     elif user_answer not in options:
