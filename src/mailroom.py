@@ -63,14 +63,14 @@ def thank_you():
         main_prompt()
 
 
-def sort_donors():
-    sorted_donors = sorted(donors, key=lambda donor: sum(donors[donor]), reverse=True)
+def sort_donors(unsorted_donors):
+    sorted_donors = sorted(unsorted_donors, key=lambda donor: sum(unsorted_donors[donor]), reverse=True)
     return sorted_donors
 
 
 def create_report():
     print("create report selected")
-    for donor in sort_donors():
+    for donor in sort_donors(donors):
         value = donors[donor]
         ave = sum(value) / len(value)
         print("""Name: {},\n Donations: {},\n Total Donations:{},\n Number of Donations: {},\n Average Donations: {}\n
